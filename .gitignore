@@ -44,7 +44,7 @@ app.*.map.json
 /android/app/release
 
 # Fvm
-/.fvm/flutter_sdk
+.fvm/flutter_sdk
 
 # Environment
 *.env
