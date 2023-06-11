@@ -2,15 +2,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../repository/story_repository.dart';
 
-final Provider<GetStoriesUseCase> getStoriesUseCaseProvider = Provider(
+final Provider<GetStoryListUseCase> getStoryListUseCaseProvider = Provider(
   (ProviderRef<Object?> ref) =>
-      GetStoriesUseCase(ref.watch(storyRepositoryProvider)),
+      GetStoryListUseCase(ref.watch(storyRepositoryProvider)),
 );
 
-class GetStoriesUseCase {
-  final StoryRepository _storiesRepository;
+class GetStoryListUseCase {
+  final StoryRepository _storyRepository;
 
-  GetStoriesUseCase(this._storiesRepository);
+  GetStoryListUseCase(this._storyRepository);
 
-  Future<List<int>> execute() async => _storiesRepository.getTopStories();
+  Future<List<int>> execute() async => _storyRepository.getTopStories();
 }

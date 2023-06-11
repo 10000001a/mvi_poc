@@ -8,8 +8,8 @@ final AutoDisposeStateNotifierProvider<StoryListViewModel, StoryListState>
     storyListViewModelProvider =
     StateNotifierProvider.autoDispose<StoryListViewModel, StoryListState>(
   (Ref ref) => StoryListViewModel(
-    ref.watch(getStoriesUseCaseProvider),
-    StoryListData(<int>[]),
+    ref.watch(getStoryListUseCaseProvider),
+    StoryListLoading(),
   ),
 );
 
@@ -19,11 +19,11 @@ class StoryListViewModel extends StateNotifier<StoryListState> {
     super.state,
   );
 
-  final GetStoriesUseCase _getStoriesUseCase;
+  final GetStoryListUseCase _getStoriesUseCase;
 
-  void dispatch(StoryListIntent indent) {
+  void dispatcher(StoryListIntent indent) {
     switch (indent) {
-      case A():
+      case GetStoryList():
         _handleA();
         break;
       case B():
@@ -36,7 +36,11 @@ class StoryListViewModel extends StateNotifier<StoryListState> {
     ;
   }
 
-  void _handleA() {}
+  Future<void> _handleA() async {
+    final List<int> storyListData = await _getStoriesUseCase.execute();
+    state = StoryListData(storyListData);
+  }
+
   void _handleB() {}
   void _handleC() {}
 }

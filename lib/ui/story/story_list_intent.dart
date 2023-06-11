@@ -1,6 +1,6 @@
 sealed class StoryListIntent {}
 
-class A extends StoryListIntent {}
+class GetStoryList extends StoryListIntent {}
 
 class B extends StoryListIntent {}
 

@@ -1,6 +1,8 @@
 sealed class StoryListState {}
 
-class StoryListLoading extends StoryListState {}
+class StoryListLoading extends StoryListState {
+  final bool isLoading = true;
+}
 
 class StoryListError extends StoryListState {}
 
